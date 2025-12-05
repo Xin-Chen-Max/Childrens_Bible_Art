@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Children's Bible Interactive Illustration</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 滚动容器：让页面可以滚动触发动画 -->
+    <div class="scroll-container">
+        
+        <!-- 主场景容器 -->
+        <div id="scene" class="stage-1">
+            
+            <!-- 背景图层 -->
+            <img src="assets/Background.png" class="bg-layer" alt="Background">
+            
+            <!-- 天空滤镜层：用于变暗效果 -->
+            <div class="sky-filter"></div>
+            
+            <!-- 1. Tape 胶带 - Scene Staging -->
+            <div class="item" id="tape-item" data-target="tape">
+                <img src="assets/Tape.png" alt="Duct Tape">
+            </div>
+            
+            <!-- 2. Mask group 垃圾袋封窗 - Space & Property Rights -->
+            <div class="item" id="mask-item" data-target="mask">
+                <img src="assets/Mask group.png" alt="Window with Garbage Bags">
+            </div>
+            
+            <!-- 3. Guy 屋顶小人 - Restricted Perspective -->
+            <div class="item" id="guy-item" data-target="guy">
+                <img src="assets/Guy.png" alt="Val on Roof">
+            </div>
+            
+            <!-- 4. Boat 船/纸箱 - Archetype (Noah's Ark) -->
+            <div class="item" id="boat-item" data-target="boat">
+                <img src="assets/Boat.png" alt="Boat">
+            </div>
+            
+            <!-- 5. Shadow 阴影 - Visual Grammar -->
+            <div class="item" id="shadow-item" data-target="shadow">
+                <img src="assets/Shadow.png" alt="Shadow">
+            </div>
+            
+            <!-- 洪水上涨层 -->
+            <div class="water-overlay"></div>
+        </div>
+        
+        <!-- 滚动占位区域：让页面有足够高度可滚动 -->
+        <div class="scroll-spacer"></div>
+    </div>
+
+    <!-- 信息卡弹窗 -->
+    <div id="info-card" class="hidden">
+        <button id="close-btn">×</button>
+        <h2 id="card-term">术语标题</h2>
+        <p id="card-judgment">这里是你的 Judgment...</p>
+        <blockquote id="card-quote">"这里放书中的原句..."</blockquote>
+    </div>
+
+    <!-- 阶段指示器 -->
+    <div id="stage-indicator">
+        <span class="stage-dot active" data-stage="1"></span>
+        <span class="stage-dot" data-stage="2"></span>
+        <span class="stage-dot" data-stage="3"></span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

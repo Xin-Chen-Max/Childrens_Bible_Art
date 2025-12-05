@@ -1,0 +1,481 @@
+/* ===================================
+   A Children's Bible - Repair Not Rebirth
+   Interactive Illustration Styles
+   =================================== */
+
+/* --- 基础重置 --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0d0d0d;
+    font-family: 'Georgia', serif;
+    color: #e8e8e8;
+    overflow-x: hidden;
+}
+
+/* --- 滚动容器 --- */
+.scroll-container {
+    width: 100%;
+    min-height: 100vh;
+}
+
+.scroll-spacer {
+    height: 200vh; /* 足够的滚动空间 */
+}
+
+/* --- 主场景容器 --- */
+#scene {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw;
+    max-width: 1200px;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.9);
+    border-radius: 4px;
+}
+
+/* --- 背景图层 --- */
+.bg-layer {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: filter 1.5s ease;
+}
+
+/* --- 天空滤镜层 --- */
+.sky-filter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    pointer-events: none;
+    z-index: 1;
+    transition: background 1.5s ease;
+}
+
+/* ===================================
+   三阶段样式 - 通过 JS 切换类名
+   =================================== */
+
+/* Stage 1: 平静 */
+#scene.stage-1 .bg-layer {
+    filter: brightness(1) saturate(1);
+}
+
+#scene.stage-1 .sky-filter {
+    background: transparent;
+}
+
+#scene.stage-1 .water-overlay {
+    height: 0%;
+}
+
+#scene.stage-1 #tape-item {
+    animation: none;
+}
+
+#scene.stage-1 #shadow-item {
+    opacity: 0.3;
+}
+
+#scene.stage-1 #boat-item {
+    animation: none;
+}
+
+#scene.stage-1 #mask-item {
+    animation: none;
+}
+
+/* Stage 2: 预警 */
+#scene.stage-2 .bg-layer {
+    filter: brightness(0.75) saturate(0.8) sepia(0.1);
+}
+
+#scene.stage-2 .sky-filter {
+    background: linear-gradient(
+        to bottom,
+        rgba(60, 40, 20, 0.3) 0%,
+        transparent 50%
+    );
+}
+
+#scene.stage-2 .water-overlay {
+    height: 20%;
+}
+
+#scene.stage-2 #tape-item {
+    animation: shake 2s infinite;
+}
+
+#scene.stage-2 #shadow-item {
+    opacity: 0.6;
+    animation: pulse 3s ease-in-out infinite;
+}
+
+#scene.stage-2 #boat-item {
+    animation: none;
+}
+
+#scene.stage-2 #mask-item {
+    animation: breathe 4s ease-in-out infinite;
+}
+
+/* Stage 3: 灾难 */
+#scene.stage-3 .bg-layer {
+    filter: brightness(0.5) saturate(0.6) sepia(0.25);
+}
+
+#scene.stage-3 .sky-filter {
+    background: linear-gradient(
+        to bottom,
+        rgba(40, 25, 10, 0.6) 0%,
+        rgba(60, 40, 20, 0.3) 40%,
+        transparent 70%
+    );
+}
+
+#scene.stage-3 .water-overlay {
+    height: 40%;
+}
+
+#scene.stage-3 #tape-item {
+    animation: shake-intense 1s infinite;
+}
+
+#scene.stage-3 #shadow-item {
+    opacity: 1;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+#scene.stage-3 #boat-item {
+    animation: float 3s ease-in-out infinite;
+}
+
+#scene.stage-3 #mask-item {
+    animation: bulge 2s ease-in-out infinite;
+}
+
+/* ===================================
+   交互元素通用样式
+   =================================== */
+
+.item {
+    position: absolute;
+    cursor: pointer;
+    transition: transform 0.3s ease, opacity 0.5s ease, filter 0.3s ease;
+    z-index: 10;
+}
+
+.item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    pointer-events: none;
+}
+
+.item:hover {
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 15px rgba(255, 200, 100, 0.6));
+    z-index: 15;
+}
+
+/* ===================================
+   各元素个性化定位
+   （根据背景图：洪水淹没房屋场景）
+   =================================== */
+
+/* 1. Tape 胶带 - 放在中间房子的阳台窗户上 */
+#tape-item {
+    top: 32%;
+    left: 38%;
+    width: 6%;
+}
+
+/* 2. Mask group X形胶带 - 放在拱形窗户上 */
+#mask-item {
+    top: 26%;
+    left: 48%;
+    width: 5%;
+}
+
+/* 3. Guy 屋顶小人 - 坐在主房屋的屋顶上 */
+#guy-item {
+    top: 18%;
+    left: 42%;
+    width: 6%;
+}
+
+/* 4. Boat 纸箱船 - 漂浮在右侧水面上 */
+#boat-item {
+    bottom: 18%;
+    right: 8%;
+    width: 22%;
+}
+
+/* 5. Shadow 阴影 - 在左侧水面/沉没的车附近 */
+#shadow-item {
+    bottom: 32%;
+    left: 18%;
+    width: 10%;
+    opacity: 0.4;
+}
+
+/* ===================================
+   动画定义
+   =================================== */
+
+/* 轻微抖动 - 风吹效果 */
+@keyframes shake {
+    0%, 85%, 100% { transform: rotate(0deg); }
+    88% { transform: rotate(1.5deg); }
+    91% { transform: rotate(-1.5deg); }
+    94% { transform: rotate(1deg); }
+    97% { transform: rotate(-0.5deg); }
+}
+
+/* 剧烈抖动 - 暴风效果 */
+@keyframes shake-intense {
+    0%, 100% { transform: rotate(0deg) translateX(0); }
+    20% { transform: rotate(2deg) translateX(2px); }
+    40% { transform: rotate(-2deg) translateX(-2px); }
+    60% { transform: rotate(3deg) translateX(1px); }
+    80% { transform: rotate(-1deg) translateX(-1px); }
+}
+
+/* 漂浮 - 船在水上 */
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-8px) rotate(1deg); }
+    50% { transform: translateY(-5px) rotate(-0.5deg); }
+    75% { transform: translateY(-10px) rotate(0.5deg); }
+}
+
+/* 呼吸/微鼓胀 - 水压效果 */
+@keyframes breathe {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+/* 鼓胀 - 更明显的水压效果 */
+@keyframes bulge {
+    0%, 100% { transform: scale(1) translateX(0); }
+    30% { transform: scale(1.03) translateX(2px); }
+    60% { transform: scale(1.04) translateX(-1px); }
+}
+
+/* 脉动 - 阴影威胁 */
+@keyframes pulse {
+    0%, 100% { opacity: inherit; filter: brightness(1); }
+    50% { opacity: calc(inherit + 0.2); filter: brightness(1.1); }
+}
+
+/* ===================================
+   洪水层
+   =================================== */
+
+.water-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    background: linear-gradient(
+        to top,
+        rgba(50, 35, 20, 0.85) 0%,
+        rgba(60, 45, 25, 0.6) 40%,
+        rgba(70, 50, 30, 0.3) 70%,
+        transparent 100%
+    );
+    z-index: 5;
+    pointer-events: none;
+    transition: height 1.5s ease;
+}
+
+/* 水面波纹效果 */
+.water-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 4px;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.1) 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.1) 75%,
+        transparent 100%
+    );
+    animation: wave 3s linear infinite;
+}
+
+@keyframes wave {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* ===================================
+   信息卡弹窗
+   =================================== */
+
+#info-card {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    background: linear-gradient(145deg, rgba(20, 15, 10, 0.95), rgba(30, 25, 20, 0.95));
+    color: #f0e6d8;
+    padding: 35px;
+    width: 380px;
+    max-width: 90vw;
+    border: 1px solid rgba(180, 150, 100, 0.3);
+    border-radius: 8px;
+    z-index: 1000;
+    text-align: left;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+#info-card.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.hidden {
+    display: none;
+}
+
+#close-btn {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 28px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    line-height: 1;
+}
+
+#close-btn:hover {
+    color: #fff;
+}
+
+#card-term {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #d4a574;
+    font-weight: normal;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba(180, 150, 100, 0.2);
+    padding-bottom: 10px;
+}
+
+#card-judgment {
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    color: #c8c0b8;
+}
+
+#card-quote {
+    font-size: 14px;
+    font-style: italic;
+    color: #a89888;
+    border-left: 3px solid rgba(180, 150, 100, 0.4);
+    padding-left: 15px;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* ===================================
+   阶段指示器
+   =================================== */
+
+#stage-indicator {
+    position: fixed;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 500;
+}
+
+.stage-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.stage-dot:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.stage-dot.active {
+    background: #d4a574;
+    border-color: #d4a574;
+    box-shadow: 0 0 10px rgba(212, 165, 116, 0.5);
+}
+
+/* ===================================
+   滚动提示
+   =================================== */
+
+.scroll-hint {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    text-align: center;
+    animation: fadeInOut 2s ease-in-out infinite;
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.7; }
+}
+
+/* ===================================
+   背景遮罩（弹窗打开时）
+   =================================== */
+
+.overlay-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.overlay-bg.visible {
+    opacity: 1;
+    visibility: visible;
+}

@@ -10,28 +10,28 @@
 const elementData = {
     tape: {
         term: "Scene Staging",
-        judgment: "胶带和塑料布封窗是临时修补，无法抵御洪水的结构性威胁。这种「舞台布景」式的防护揭示了修复的虚假性——它只是表面功夫，无法提供真正的庇护。",
-        quote: "They taped plastic over the windows, garbage bags over the vents..."
+        judgment: "Sealing windows with tape and plastic is a temporary patch, structurally impotent against the flood. This 'stage-set' style of protection reveals the falsity of the repair—it is a superficial gesture that offers no true shelter.",
+        quote: "\"Two hundred garbage bags,\" she said. \"And plenty of duct tape.\" "
     },
-    mask: {
+    mask: { // Refers to the Window/Plastic Sheeting
         term: "Space & Property Rights",
-        judgment: "垃圾袋封住的窗户象征着空间的脆弱边界。富人可以撤离到安全地带，而穷人只能用临时材料保护自己的空间——这不是重生，而是贫富差距在灾难中的再次显现。",
-        quote: "The parents had retreated to the great room with its cathedral ceiling..."
+        judgment: "The window sealed with garbage bags symbolizes the fragile boundaries of private space. It reveals that 'safety' is just a temporary state maintained by trash, highlighting the disparity between those who can retreat and those left to patch the leaks.",
+        quote: "\"Within hours the bags Val had taped over the hole were sagging and gaping.\" "
     },
-    guy: {
+    guy: { // Refers to Val on the roof
         term: "Restricted Perspective",
-        judgment: "屋顶上的孩子被迫采取成人的视角，却只能看到有限的世界。这种受限的视角强调了儿童被推入成人角色的无奈——他们继承的不是新世界，而是旧秩序的重担。",
-        quote: "I climbed up to where I could see the water coming..."
+        judgment: "The child on the roof is forced to adopt an adult vantage point yet sees a limited world. This restricted perspective highlights the helplessness of children pushed into adult roles—they inherit not a new world, but the heavy burden of the old order.",
+        quote: "\"They'd put a kid on the roof in a lightning storm.\" "
     },
-    boat: {
+    boat: { // Refers to the Cardboard Box/Ark
         term: "Archetype — Noah's Ark",
-        judgment: "船只唤起诺亚方舟的原型，但这里没有神圣的契约，没有彩虹的承诺。所谓的「方舟」只是漂浮的残骸，「重生」只是旧秩序在年轻身体上的重新包装。",
-        quote: "The boat was just a rowboat, really. Nothing that could save us all..."
+        judgment: "The vessel evokes Noah’s Ark, yet here there is no divine covenant, no rainbow. The so-called 'Ark' is merely floating debris; the 'rebirth' is just the old order repackaged onto a young body.",
+        quote: "\"I saw holes punched in one box, two box, three box, four.\" [cite: 1105]"
     },
-    shadow: {
+    shadow: { // Refers to the Figure's Shadow (Cycle)
         term: "Visual Grammar",
-        judgment: "阴影代表着持续存在的威胁——它不会因为临时修补而消失。视觉语法中的阴影强调：如果不重塑基础设施和能源分配，临时补丁只会转移风险，而非消除根源。",
-        quote: "The shadow of the storm hadn't lifted. It hung over us still..."
+        judgment: "The shadow cast by the figure represents the systemic cycle. It implies that the threat hasn't vanished with the flood; instead, the failures of the past are attached to the children's feet, traveling with them into the future like a ghost.",
+        quote: "\"What people wanted to be, but never could, traveled along beside them. Company.\" [cite: 2252]"
     }
 };
 
@@ -157,6 +157,10 @@ function hideInfoCard() {
 // 为每个可点击元素添加事件
 items.forEach(item => {
     item.addEventListener('click', (e) => {
+        // 如果点击的是 face-loading，不触发弹窗
+        if (e.target.classList.contains('face-loading')) {
+            return;
+        }
         e.stopPropagation();
         const target = item.dataset.target;
         showInfoCard(target);

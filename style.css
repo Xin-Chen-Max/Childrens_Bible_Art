@@ -186,7 +186,7 @@ body {
 .item:hover {
     transform: scale(1.08);
     filter: drop-shadow(0 0 15px rgba(255, 200, 100, 0.6));
-    z-index: 15;
+    z-index: 50 !important; /* 悬停时提高层级，避免被其他元素遮挡 */
 }
 
 /* ===================================
@@ -196,23 +196,43 @@ body {
 
 /* 1. Tape 胶带 - 放在中间房子的阳台窗户上 */
 #tape-item {
-    top: 32%;
-    left: 38%;
+    top: 70%;
+    left: 72%;
     width: 6%;
+    z-index: 20; /* 比 boat 高，确保在上层 */
 }
 
 /* 2. Mask group X形胶带 - 放在拱形窗户上 */
 #mask-item {
-    top: 26%;
-    left: 48%;
+    top: 35%;
+    left: 27%;
     width: 5%;
 }
 
 /* 3. Guy 屋顶小人 - 坐在主房屋的屋顶上 */
 #guy-item {
-    top: 18%;
-    left: 42%;
+    top: 27%;
+    left: 37%;
     width: 6%;
+    z-index: 15;
+}
+
+/* Loading 图标在男孩脸上 */
+#guy-item .face-loading {
+    position: absolute !important;
+    top: 16% !important;
+    left: 38% !important;
+    width: 25% !important;
+    height: auto !important;
+    animation: spin 2s linear infinite;
+    pointer-events: auto; /* 拦截点击，不传递到下面 */
+    z-index: 20;
+    cursor: default; /* 鼠标样式改为默认箭头 */
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
 /* 4. Boat 纸箱船 - 漂浮在右侧水面上 */
@@ -220,14 +240,20 @@ body {
     bottom: 18%;
     right: 8%;
     width: 22%;
+    z-index: 8; /* 比 tape 低，避免遮挡 */
 }
-
+#boat-item:hover {
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 15px rgba(255, 200, 100, 0.6));
+    z-index: 8 !important; /* 保持原来的低层级 */
+}
 /* 5. Shadow 阴影 - 在左侧水面/沉没的车附近 */
 #shadow-item {
-    bottom: 32%;
-    left: 18%;
+    bottom: 61%;
+    left: 31%;
     width: 10%;
     opacity: 0.4;
+    z-index: 5;
 }
 
 /* ===================================

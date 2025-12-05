@@ -9,29 +9,29 @@
 
 const elementData = {
     tape: {
-        term: "Scene Staging",
+        term: "Duct Tape",
         judgment: "Sealing windows with tape and plastic is a temporary patch, structurally impotent against the flood. This 'stage-set' style of protection reveals the falsity of the repair—it is a superficial gesture that offers no true shelter.",
         quote: "\"Two hundred garbage bags,\" she said. \"And plenty of duct tape.\" "
     },
-    mask: { // Refers to the Window/Plastic Sheeting
-        term: "Space & Property Rights",
+    mask: {
+        term: "Window",
         judgment: "The window sealed with garbage bags symbolizes the fragile boundaries of private space. It reveals that 'safety' is just a temporary state maintained by trash, highlighting the disparity between those who can retreat and those left to patch the leaks.",
         quote: "\"Within hours the bags Val had taped over the hole were sagging and gaping.\" "
     },
-    guy: { // Refers to Val on the roof
-        term: "Restricted Perspective",
+    guy: {
+        term: "The Child",
         judgment: "The child on the roof is forced to adopt an adult vantage point yet sees a limited world. This restricted perspective highlights the helplessness of children pushed into adult roles—they inherit not a new world, but the heavy burden of the old order.",
         quote: "\"They'd put a kid on the roof in a lightning storm.\" "
     },
-    boat: { // Refers to the Cardboard Box/Ark
-        term: "Archetype — Noah's Ark",
-        judgment: "The vessel evokes Noah’s Ark, yet here there is no divine covenant, no rainbow. The so-called 'Ark' is merely floating debris; the 'rebirth' is just the old order repackaged onto a young body.",
-        quote: "\"I saw holes punched in one box, two box, three box, four.\" [cite: 1105]"
+    boat: {
+        term: "Cardboard Boat",
+        judgment: "The vessel evokes Noah's Ark, yet here there is no divine covenant, no rainbow. The so-called 'Ark' is merely floating debris; the 'rebirth' is just the old order repackaged onto a young body.",
+        quote: "\"I saw holes punched in one box, two box, three box, four.\" "
     },
-    shadow: { // Refers to the Figure's Shadow (Cycle)
-        term: "Visual Grammar",
+    shadow: {
+        term: "Shadow",
         judgment: "The shadow cast by the figure represents the systemic cycle. It implies that the threat hasn't vanished with the flood; instead, the failures of the past are attached to the children's feet, traveling with them into the future like a ghost.",
-        quote: "\"What people wanted to be, but never could, traveled along beside them. Company.\" [cite: 2252]"
+        quote: "\"What people wanted to be, but never could, traveled along beside them. Company.\" "
     }
 };
 

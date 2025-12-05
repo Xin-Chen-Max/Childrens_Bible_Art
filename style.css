@@ -228,6 +228,7 @@ body {
     pointer-events: auto; /* 拦截点击，不传递到下面 */
     z-index: 20;
     cursor: default; /* 鼠标样式改为默认箭头 */
+    border-radius: 50%; 
 }
 
 @keyframes spin {

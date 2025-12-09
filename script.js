@@ -9,8 +9,8 @@
 
 const elementData = {
     tape: {
-        term: "Duct Tape",
-        judgment: "Sealing windows with tape and plastic is a temporary patch, structurally impotent against the flood. This 'stage-set' style of protection reveals the falsity of the repair—it is a superficial gesture that offers no true shelter.",
+        term: "Cardboard Boat",
+        judgment: "The vessel evokes Noah's Ark, yet here there is no divine covenant, no rainbow. The so-called 'Ark' is merely floating debris; the 'rebirth' is just the old order repackaged onto a young body.",
         quote: "\"Two hundred garbage bags,\" she said. \"And plenty of duct tape.\" "
     },
     mask: {

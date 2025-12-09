@@ -11,11 +11,11 @@ const elementData = {
     tape: {
         term: "Cardboard Boat",
         judgment: "The vessel evokes Noah's Ark, yet here there is no divine covenant, no rainbow. The so-called 'Ark' is merely floating debris; the 'rebirth' is just the old order repackaged onto a young body.",
-        quote: "\"Two hundred garbage bags,\" she said. \"And plenty of duct tape.\" "
+        quote: "\"I saw holes punched in one box, two box, three box, four.\" "
     },
     mask: {
         term: "Window",
-        judgment: "The window sealed with garbage bags symbolizes the fragile boundaries of private space. It reveals that 'safety' is just a temporary state maintained by trash, highlighting the disparity between those who can retreat and those left to patch the leaks.",
+        judgment: "The window sealed with tapes symbolizes the fragile boundaries of private space. It reveals that 'safety' is just a temporary state maintained by trash, highlighting the disparity between those who can retreat and those left to patch the leaks.",
         quote: "\"Within hours the bags Val had taped over the hole were sagging and gaping.\" "
     },
     guy: {

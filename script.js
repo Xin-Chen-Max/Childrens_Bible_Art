@@ -1,7 +1,7 @@
 const elementData = {
     tape: {
         term: "Tape",
-        judgment: "The tape patching the cardboard boat represents the temporary fix that masquerades as repair. It holds the fragments together just long enough to create the illusion of a vessel, but this is not construction—it is containment. The tape reveals that 'rebirth' is merely the old order held together by adhesive, ready to dissolve when the water seeps through the holes it cannot truly seal.",
+        judgment: "The adhesive tape patching the cardboard boat represents the temporary fix that masquerades as repair. It holds the fragments together just long enough to create the illusion of a vessel, but this is not construction—it is containment. The adhesive reveals that 'rebirth' is merely the old order held together by temporary bonds, ready to dissolve when the water seeps through the holes it cannot truly seal.",
         quote: "\"I saw holes punched in one box, two box, three box, four.\" ",
         sound: "Audio/duct-tape-46809.mp3"
     },
